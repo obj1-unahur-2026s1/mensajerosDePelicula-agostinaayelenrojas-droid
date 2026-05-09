@@ -1,9 +1,83 @@
-import example.pepita
+import example.*
 
-describe "group of tests for pepita" {
+test "roberto puede llevar paquete pago" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
-  }
+    camion.acoplado(1)
 
+    roberto.cambiarVehiculo(camion)
+
+    assert.that(
+        paquete1.puedeSerEntregadoPor(roberto)
+    )
+}
+
+test "neo no puede llevar paquete no pago a matrix" {
+
+    neo.tieneCredito(true)
+
+    assert.notThat(
+        paquete2.puedeSerEntregadoPor(neo)
+    )
+}
+
+test "chuck puede entrar a matrix" {
+
+  assert.that(
+    matrix.puedePasar(chuckNorris)
+  )
+}
+
+//segunda parte tests
+test "contratar mensajero" {
+
+    mensajero.contratar(roberto)
+
+    assert.that(
+        mensajero.mensajero().contains(roberto)
+    )
+}
+
+test "despedir mensajero" {
+
+    mensajero.contratar(chuckNorris)
+
+    mensajero.despedir(chuckNorris)
+
+    assert.notThat(
+        mensajero.mensajero().contains(chuckNorris)
+    )
+}
+test "despedir mensajero" {
+
+    mensajero.contratar(chuckNorris)
+
+    mensajero.despedir(chuckNorris)
+
+    assert.notThat(
+        mensajero.mensajero().contains(chuckNorris)
+    )
+}
+
+//tercera parte
+test "paquetito puede ser llevado por cualquiera" {
+
+  assert.that(
+    paquetito.puedeSerEntregadoPor(roberto)
+  )
+}
+
+test "paqueton viajero necesita estar pago" {
+
+  assert.notThat(
+    paquetonViajero.estaPago()
+  )
+}
+
+test "mensajeria no tiene sobrepeso" {
+
+  mensajeria.contratar(chuckNorris)
+
+  assert.notThat(
+    mensajeria.tieneSobrepeso()
+  )
 }
